@@ -1,0 +1,188 @@
+     A*%%TS  SD  20240701  122210  GIYVOVIE    REL-V7R4M0  5770-WDS
+     A**************************************************************************
+     A**** Gestion des employés
+     A**************************************************************************
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      REF(*LIBL/VEMP)
+     A                                      PRINT
+     A                                      INDARA
+     A                                      CA03(03)
+     A                                      CF05(05)
+     A                                      CF06(06)
+     A                                      CF12(12)
+     A                                      CF09(09)
+     A                                      CF10(10)
+     A                                      CF04(04)
+     A**************************************************************************
+     A          R BASPAGE
+     A                                      OVERLAY
+     A                                 22  2'                                  -
+     A                                                                         -
+     A                                               '
+     A                                      DSPATR(UL)
+     A                                      COLOR(BLU)
+     A            TFONCTIONS    75A  O 23  2COLOR(BLU)
+     A            MSGERR        75A  O 24  2COLOR(RED)
+     A N99                                  DSPATR(ND)
+     A                                      MSGID(&WMSG FRSMSGF)
+     A            WMSG           7A  P
+     A**************************************************************************
+     A          R F1E                       SFL
+     A*%%TS  SD  20240701  120904  GIYVOVIE    REL-V7R4M0  5770-WDS
+     A                                      KEEP
+     A            SFCHOIX        1A  B  8  2
+     A  37                                  DSPATR(PC)
+     A  37                                  DSPATR(RI)
+     A  39                                  DSPATR(PR)
+     A  39                                  DSPATR(ND)
+     A            SFEMPNO   R        O  8  6REFFLD(VEMP/EMPNO *LIBL/VEMP)
+     A            SFFIRSTNMER        O  8 13REFFLD(VEMP/FIRSTNME *LIBL/VEMP)
+     A            SFLASTNAMER        O  8 26REFFLD(VEMP/LASTNAME *LIBL/VEMP)
+     A            SFMIDINIT R        O  8 42REFFLD(VEMP/MIDINIT *LIBL/VEMP)
+     A            SFWORKDEPTR        O  8 45REFFLD(VEMP/WORKDEPT *LIBL/VEMP)
+     A**************************************************************************
+     A          R F1C                       SFLCTL(F1E)
+     A*%%TS  SD  20240701  121652  GIYVOVIE    REL-V7R4M0  5770-WDS
+     A                                      SFLSIZ(0014)
+     A                                      SFLPAG(0013)
+     A N33                                  ROLLUP(35)
+     A                                      RTNCSRLOC(&REC &FLD)
+     A                                      BLINK
+     A                                      OVERLAY
+     A                                      SFLCSRRRN(&GRTRNG)
+     A  30                                  SFLDSP
+     A  31                                  SFLDSPCTL
+     A  32                                  SFLCLR
+     A  33                                  SFLEND(*MORE)
+     A            GRTRNG         5S 0H
+     A            SFRRN          4S 0H      SFLRCDNBR(CURSOR)
+     A            REC           10A  H
+     A            FLD           10A  H
+     A            LIG            3S 0H
+     A            COL            3S 0H
+     A                                  1  2USER
+     A            $NOMPGM       10A  O  1 13
+     A                                  1 55'Gestion des villes'
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  1 70DATE
+     A                                      EDTCDE(Y)
+     A                                      COLOR(BLU)
+     A            JOB           10A  O  2  2DSPATR(HI)
+     A                                      COLOR(GRN)
+     A                                  2 70TIME
+     A                                      COLOR(BLU)
+     A                                  4  4'2=Modification'
+     A                                      COLOR(BLU)
+     A                                  4 19'5=Consultation'
+     A                                      COLOR(BLU)
+     A                                  6  6'N°    '
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A                                  6 13'Nom et prénom            '
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A                                  6 45'Departement'
+     A                                      COLOR(WHT)
+     A                                      DSPATR(UL)
+     A            SLEMPNO   R        B  7  6REFFLD(VEMP/EMPNO *LIBL/VEMP)
+     A            SLFIRSTNMER        B  7 13REFFLD(VEMP/FIRSTNME *LIBL/VEMP)
+     A                                      DSPATR(UL)
+     A                                      CHECK(LC)
+     A            SLLASTNAMER        B  7 26REFFLD(VEMP/LASTNAME *LIBL/VEMP)
+     A                                      DSPATR(UL)
+     A                                      CHECK(LC)
+     A            SLMIDINIT R        B  7 41REFFLD(VEMP/MIDINIT *LIBL/VEMP)
+     A            SLWORKDEPTR        B  7 45REFFLD(VEMP/WORKDEPT *LIBL/VEMP)
+      **************************************************************************
+     A          R FVIDE
+     A                                      OVERLAY
+     A                                 14 31'Aucun enregistrement'
+     A                                      DSPATR(BL)
+     A                                      COLOR(RED)
+     A          R F2
+     A*%%TS  SD  20240701  122210  GIYVOVIE    REL-V7R4M0  5770-WDS
+     A                                      RTNCSRLOC(&REC &FLD)
+     A                                      CSRLOC(ROW        COL)
+     A            WMSG           7A  P
+     A            REC           10A  H
+     A            FLD           10A  H
+     A            ROW            3S 0H
+     A            COL            3S 0H
+     A                                  1  2USER
+     A            $NOMPGM       10A  O  1 13
+     A                                  1 55'Employé'
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  1 70DATE
+     A                                      EDTCDE(Y)
+     A                                      COLOR(BLU)
+     A            JOB           10A  O  2  2DSPATR(HI)
+     A                                      COLOR(GRN)
+     A            MODE          20A  O  2 51DSPATR(RI)
+     A                                      COLOR(PNK)
+     A                                  2 70TIME
+     A                                      COLOR(BLU)
+     A                                  5  5'ID'
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A            F2EMPNO   R        O  5  8REFFLD(VEMP/EMPNO *LIBL/VEMP)
+     A                                 10  6'Nom'
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A            F2LASTNAMER        B 10 10REFFLD(VEMP/LASTNAME *LIBL/VEMP)
+     A  38                                  DSPATR(PR)
+     A                                 12  6'Prénom'
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A            F2FIRSTNMER        B 12 13REFFLD(VEMP/FIRSTNME *LIBL/VEMP)
+     A  38                                  DSPATR(PR)
+     A                                 14  6'Initiale'
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A            F2MIDINIT R        B 14 15REFFLD(VEMP/MIDINIT *LIBL/VEMP)
+     A  38                                  DSPATR(PR)
+     A                                 16  6'Département'
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A            F2WORKDEPTR        B 16 18REFFLD(VEMP/WORKDEPT *LIBL/VEMP)
+     A  38                                  DSPATR(PR)
+     A            TFONCTION2    75A  O 23  2COLOR(BLU)
+     A            MSGERR2       75A  O 24  2COLOR(RED)
+     A N99                                  DSPATR(ND)
+     A                                      MSGID(&WMSG PSGMSGF)
+     A          R AUDIT
+     A                                      WINDOW(5 5 10 70)
+     A                                      WDWBORDER((*DSPATR HI RI) (*CHAR ' -
+     A                                             '))
+     A                                  2  2'AUDIT'
+     A                                      COLOR(PNK)
+     A                                  3 13'Le                       '
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A                                  3 40'Qui      '
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A                                  3 52'Par      '
+     A                                      DSPATR(UL)
+     A                                      COLOR(WHT)
+     A                                  4  2'Statut'
+     A                                      COLOR(WHT)
+     A                                  9 29'F12=Annuler'
+     A                                      COLOR(BLU)
+     A          R CONFIRM
+     A                                      WINDOW(5 10 10 40)
+     A                                      WDWBORDER((*DSPATR HI RI) (*CHAR ' -
+     A                                             '))
+     A                                  2  2'CONFIRMATION'
+     A                                      COLOR(PNK)
+     A            CONF1         38   O  4  2COLOR(RED)
+     A            CONF2         38   O  5  2COLOR(RED)
+     A            CONF3         38   O  6  2COLOR(RED)
+     A            CONF4         38   O  7  2COLOR(RED)
+     A                                  9  2'F9=CONFIRMER'
+     A                                      COLOR(BLU)
+     A                                      DSPATR(RI)
+     A                                  9 29'F12=Annuler'
+     A                                      COLOR(BLU)

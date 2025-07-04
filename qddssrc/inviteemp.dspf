@@ -1,0 +1,54 @@
+     A**************************************************************************
+     A* Liste des employés.
+     A**************************************************************************
+     A                                      REF(VEMP)
+     A                                      PRINT
+     A                                      INDARA
+     A                                      CA12(12 'Annuler')
+     A                                      CF05(05 'Rafraichir')
+     A**************************************************************************
+     A          R BIDON                     ASSUME
+     A                                  1  2' '
+     A**************************************************************************
+     A          R WIN01
+     A                                      WINDOW(2 2 20 38)
+     A                                      WDWBORDER((*DSPATR HI RI) (*CHAR ' -
+     A                                             '))
+     A                                 19  1'F5=rafraîchir F12=Annuler'
+     A                                      COLOR(BLU)
+     A**************************************************************************
+     A          R SFL01                     SFL
+     A*%%TS  SD  20140821  104033  DEVEXTVIEV  REL-V7R1M0  5770-WDS
+     A            SFRRN          4S 0H
+     A            SFID           6A  H
+     A            $CHOIX         1A  B  6  2
+     A            SFLIB         32A  O  6  5
+     A**************************************************************************
+     A          R CTL01                     SFLCTL(SFL01)
+     A*%%TS  SD  20140821  105507  DEVEXTVIEV  REL-V7R1M0  5770-WDS
+     A                                      WINDOW(WIN01)
+     A                                      SFLSIZ(13)
+     A                                      SFLPAG(12)
+     A                                      OVERLAY
+     A                                      BLINK
+     A  30                                  SFLDSP
+     A  31                                  SFLDSPCTL
+     A  32                                  SFLCLR
+     A  33                                  SFLEND(*MORE)
+     A N33                                  ROLLUP(35)
+     A            POSPAGE        4S 0H      SFLRCDNBR(CURSOR)
+     A            $NOMPGM       10A  O  2  2
+     A                                  2 13'Liste des Employés'
+     A                                      DSPATR(HI)
+     A                                      DSPATR(UL)
+     A                                  4  2'1=Sélectionner'
+     A                                      COLOR(BLU)
+     A            SLLIB         32A  B  5  5
+     A                                      DSPATR(UL)
+     A          R CVIDE
+     A                                      WINDOW(WIN01)
+     A                                      OVERLAY
+     A                                  8  5'Aucun enregistrement'
+     A                                      DSPATR(BL)
+     A                                      COLOR(RED)
+
